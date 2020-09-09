@@ -46,8 +46,8 @@ The information about each variable is discussed below - its type , descrption (
         -> Low Expectation 
   
   10. Embarked : Port of Embarcation </br> 
-        -> Categorical Feature 
-        -> Values : C = Cherbourg, Q = Queenstown, S = Southampton
+        -> Categorical Feature </br>
+        -> Values : C = Cherbourg, Q = Queenstown, S = Southampton </br>
         -> High Expectation
         
 
