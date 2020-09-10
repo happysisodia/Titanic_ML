@@ -50,8 +50,66 @@ The information about each variable is discussed below - its type , descrption (
         -> Values : C = Cherbourg, Q = Queenstown, S = Southampton </br>
         -> High Expectation
         
+The Train data set contains 981 rows whereas the test dataset contains 481 rows.
 
-        
+<h3> Exploratory Data Analysis </h3> 
+
+One of the first steps I did for the EDA was used the 'describe' and 'info' of python to get an overall desciption of the data-set and find out the number if blank null or missing values. 
+
+![alt text](images/data_info.JPG)
+
+As can be seen from the above image the fields containing the missing values are : 
+
+Checking the data for survival column. 
+
+![alt text](images/survival_count.JPG)
+
+Percentage of people that did not survive is 61.62 </br>
+Percentage of people that survived is 38.38 </br>
+
+The data is imbalanced with passenger having low survival Rate. But as the imbalance is not too skewed, I will not be using any data balancing techniques. 
+For further analysis, I combined the training and testing dataset. this was done for better analysis and filling of values. 
+
+For the field that according to me had high expectation in prediction. I did a detailed analysis for those field and decided if i shall use them in model building or not.
+
+![alt text](images/Clssur.jpeg)
+
+![alt text](images/sursex.jpg)
+
+![alt text](images/suremb.jpg)
+
+![alt text](images/agehist.JPG)
+
+![alt text](images/agesurbar.JPG)
+
+![alt text](images/agesur.JPG)
+
+![alt text](images/suvemb.JPG)
+
+![alt text](images/pairplot.JPG)
+
+![alt text](images/grpdata.JPG)
+
+From these graphs and looking into them in detail, I made the following observation 
+1. Female Passenger have higher survival Rate. Though exception could be found for Embarked = C where male had higher survival Rate,
+2. Pclass = 3 had the most death(least survival rate) whereas Pclass = 1  had the least death ( high survival rate).
+3. Most passengers are in 15-35 age range. Large number of 15-25 year olds did not survive.
+
+Thus from these observation, I have decided to keep the following field for model building - Sex, Pclass,Embark and age . Although for age the Value I will band age into groups. 
+
+Now lets use heatmap to see the correlation between different fields.
+![alt text](images/corrheat.JPG)
+
+Parch and fare have high correaltion with the survival column.
+
+Now I will combine the two datasets into one dataset so that I can fill the missing values, drop columns that I think are not useful and and create new columns.
+
+
+
+
+
+
+
         
         
         
