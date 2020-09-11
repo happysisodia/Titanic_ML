@@ -104,12 +104,57 @@ Parch and fare have high correaltion with the survival column.
 
 Now I will combine the two datasets into one dataset so that I can fill the missing values, drop columns that I think are not useful and and create new columns.
 
+Checking the percent of Null values in the data set: </br> 
+![alt text](images/nullper.JPG)
 
+Based on the Null Values I will be dropping 'Cabin' field from the dataset. Also I think ' PassengerId' , 'Ticket', and 'Name' dont make any real impact on the model and thus will be dropping them too ! 
 
+"all_data = all_data.drop(['PassengerId','Ticket', 'Cabin', 'Name'], axis=1)"   </br?
 
+Now to fill the missing values of 'Age'. I will fill the missing values by using other correlated features, which in this case is 'Age', 'Gender', and 'Pclass'. I calculated median age using the combination of these feature. This method has the added advantage of not adding noise to the model. 
 
+![alt text](images/medianage.JPG)
 
+Moving to other fields, age is continous and I will be converting it into 5 bands.
 
+![alt text](images/agebands.JPG)
+
+Instead of using 'Parch' and 'Sibsp' fields as it is, I will be adding a logical field 'Family' that will be true if any of the field has any value other than '0'. After which I will drop these two fields. 
+
+"all_data['Family'] = (all_data['SibSp'] > 0) | (all_data['Parch'] > 0)" </br>
+
+"all_data = all_data.drop(['SibSp','Parch'], axis=1)" </br>
+
+for the Filling of Embarked missing values , I had two option : just drop the rows or fill it with most frequent port. I went ahead with filling of most important field. In this case the most frequent value is : "S" . 
+
+The fare field was also converted into bands: 
+
+![alt text](images/fareband.JPG)
+
+I will use the label encoder function provided by scikit learn for pre-processing but mapping function is also an option
+
+lbl= LabelEncoder() </br>
+lbl.fit(list(all_data['Sex'].values)) </br>
+all_data['Sex'] = lbl.transform(list(all_data['Sex'].values)) </br>
+
+lbl.fit(list(all_data['Embarked'].values)) </br>
+all_data['Embarked'] = lbl.transform(list(all_data['Embarked'].values)) </br>
+
+Now the data is ready for model Building! </br>
+
+<h3> Model Building and Prediction </h3>
+
+As this is a classification and regression problem and requires supervised learning, for Model I have decided to try these three models: </br>
+
+1. Random Forest Classifier </br>
+2. Gradient Boosting Classfier </br>
+3. Logistic Regression </br>
+
+Their code and training is given in the Jupyter Notebook - "Titanic_ml" . </br>
+
+I got the highest accuracy of 77% from these models. </br>
+
+One of the way that I plan to further increase the accuracy is by adding Cross Validation and Ensemble Models.
         
         
         
